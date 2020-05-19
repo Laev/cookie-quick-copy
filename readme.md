@@ -2,12 +2,7 @@
 
 一款快速复制某网站指定键与键值至当前已激活标签页的谷歌插件
 
-> v1 版本只支持固定复制
->
-> [广电云测试服]: console.dev.guangdianyun.tv
->
-> 下CONSOLE_TOKEN_GDY键
->
+> v1 版本只支持固定复制 [广电云测试服](http://console.dev.guangdianyun.tv/) 下 CONSOLE_TOKEN_GDY键
 > V2 版本支持用户输入复制指定网站指定键&键值
 
 ### 目录结构
@@ -23,6 +18,3 @@
 ├── popup.html           // 扩展程序的 UI 页面
 └── popup.js             // 扩展程序的 js 脚本
 ```
-
-
-
