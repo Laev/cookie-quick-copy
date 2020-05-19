@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./popup.js"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            font-family: 'Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, 微软雅黑, Arial, sans-serif';
+        }
+        li{
+            list-style: none;
+        }
+        .popup-main{
+            width: 160px;
+            height: 100%;
+            padding: 5px;
+            box-shadow: 0 1px 4px 0 rgba(0,0,0,.08);
+        }
+        .popup-main li {
+            display: block;
+            width: 100%;
+            height: 24px;
+            line-height: 24px;
+            font-size: 14px;
+            cursor: pointer;
+            background: #f8f8f8;
+            position: relative;
+            border-radius: 2px;
+        }
+        .popup-main li button{
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            color:#333;
+            outline: none;
+            position: relative;
+            z-index: 1;
+            background:transparent;
+        }
+        .popup-main li::before{
+            transition: .3s all;
+            content:'';
+            position: absolute;
+            display: block;
+            left: 0;
+            top: 0;
+            width: 160px;
+            height: 100%;
+            background-color: rgba(211, 226, 235,0);
+            z-index: 0;
+            border-radius: 2px;
+        }
+        .popup-main li:hover::before{
+            width: 160px;
+            background-color: rgba(211, 226, 235, 5);
+
+        }
+    </style>
+</head>
+<body>
+    <ul class="popup-main">
+        <li>
+            <button titile="一键设置广电云测试服cookie到本地">一键设置cookie</button>
+        </li>
+    </ul>
+</body>
+</html>
