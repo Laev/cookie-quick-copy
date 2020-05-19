@@ -1,4 +1,6 @@
-## cookie-quick-copy
+# cookie-quick-copy
+
+## 简述
 
 一款快速复制某网站指定键与键值至当前已激活标签页的谷歌插件
 
@@ -18,3 +20,14 @@
 ├── popup.html           // 扩展程序的 UI 页面
 └── popup.js             // 扩展程序的 js 脚本
 ```
+
+## 调试
+
+1. 拉取
+
+   ```shell
+   git clone https://github.com/Laev/cookie-quick-copy.git
+   ```
+
+2. 在打开谷歌浏览器右上角菜单>更多工具>扩展程序>加载已解压的扩展程序
+
