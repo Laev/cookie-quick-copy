@@ -18,3 +18,10 @@
 ├── popup.html           // 扩展程序的 UI 页面
 └── popup.js             // 扩展程序的 js 脚本
 ```
+
+### 查阅相关文档
+[chrome API](https://crxdoc-zh.appspot.com/extensions/api_index#stable_apis)
+
+[一篇文章教你顺利入门和开发chrome扩展程序](https://juejin.im/post/5c135a275188257284143418)
+
+[手把手教你开发一个 chrome 扩展程序](https://juejin.im/post/5e58c06d51882549331cf0ed)
