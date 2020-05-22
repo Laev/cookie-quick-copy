@@ -1,15 +1,16 @@
 // init
 document.addEventListener("DOMContentLoaded", function () {
   setDefToUrl();
+  var message = new errorHandler();
   document
     .querySelector(".popup-btn")
     .addEventListener("click", async function () {
+      message.destroy();
       var fromUrl = document.querySelector(".from-url").value;
       var fromKey = document.querySelector(".from-key").value;
-      var toUrl =
-        document.querySelector(".to-url").value || "http://test.laev.top/";
-      if (!fromUrl && !fromKey) {
-        alert("url,key不能为空");
+      var toUrl = document.querySelector(".to-url").value;
+      if (!fromUrl || !fromKey || !toUrl) {
+        message.warning("请填写完整配置");
         return false;
       }
       let cookie = {};
@@ -20,11 +21,16 @@ document.addEventListener("DOMContentLoaded", function () {
         if (isPassGet) {
           cookie = await getCookie(fromUrl, fromKey);
         } else {
-          alert("操作不被允许，请授予权限");
+          message.error("操作不被允许，请授予权限");
         }
         return;
       } else {
         cookie = await getCookie(fromUrl, fromKey);
+      }
+      // 未获取到的异常处理
+      if (!cookie) {
+        message.warning("未获取到目标cookie值");
+        return;
       }
       // 验证目标地址权限
       const hasTargetPermission = await permissionsContains(toUrl);
@@ -36,9 +42,15 @@ document.addEventListener("DOMContentLoaded", function () {
             domain: getHostFromUrl(toUrl),
             path,
             expirationDate,
-          });
+          })
+            .then(() => {
+              message.success("设置成功");
+            })
+            .catch(() => {
+              message.error("设置失败");
+            });
         } else {
-          alert("操作不被允许，请授予权限");
+          message.error("操作不被允许，请授予权限");
         }
         return;
       } else {
@@ -46,7 +58,13 @@ document.addEventListener("DOMContentLoaded", function () {
           domain: getHostFromUrl(toUrl),
           path,
           expirationDate,
-        });
+        })
+          .then(() => {
+            message.success("设置成功");
+          })
+          .catch(() => {
+            message.error("设置失败");
+          });
       }
     });
 });
@@ -64,6 +82,43 @@ function setDefToUrl() {
       document.querySelector(".to-url").value = tabs[0].url;
     }
   );
+}
+
+/**
+ * 提示消息
+ */
+class errorHandler {
+  constructor() {
+    this.domClass = ".popup-message";
+    this.messageDom = document.querySelector(this.domClass);
+    // 如未检测到则创建
+    if (!this.messageDom) {
+      this.messageDom = document.createElement("div");
+      this.messageDom.class = domClass;
+      document.body.appendChild(this.containerEl);
+    }
+  }
+  show({ type = "info", text = "" }) {
+    this.destroy();
+    this.messageDom.innerHTML = text;
+    this.messageDom.classList.add(type);
+  }
+  destroy() {
+    this.messageDom.innerHTML = "";
+    this.messageDom.classList.remove("success", "info", "error", "warning");
+  }
+  success(text) {
+    this.show({ type: "success", text });
+  }
+  info(text) {
+    this.show({ type: "info", text });
+  }
+  error(text) {
+    this.show({ type: "error", text });
+  }
+  warning(text) {
+    this.show({ type: "warning", text });
+  }
 }
 
 /**
@@ -120,7 +175,7 @@ function requestPermissions(url, otherPermission = []) {
  * @param  {object}  opt  [额外参数]
  */
 function getCookie(url, name, opt = {}) {
-  return new Promise(function (resolve, reject) {
+  return new Promise(function (resolve) {
     chrome.cookies.get(
       {
         url,
@@ -131,7 +186,7 @@ function getCookie(url, name, opt = {}) {
         if (cookie) {
           resolve(cookie);
         } else {
-          reject(false);
+          resolve(false);
         }
       }
     );
