@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       // 未获取到的异常处理
       if (!cookie) {
-        message.warning("未获取到目标cookie值");
+        message.warning("未获取到源网站cookie值");
         return;
       }
       // 验证目标地址权限
