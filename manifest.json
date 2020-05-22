@@ -25,11 +25,4 @@
   // 	"run_at": "document_start"
   //  } ],
   "permissions": ["http://*/", "https://*/", "cookies"]
-  // "optional_permissions": [
-  //   "tabs",
-  //   "activeTab",
-  //   "http://*/",
-  //   "https://*/",
-  //   "cookies"
-  // ]
 }
