@@ -1,71 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./utils/common.js"></script>
     <script src="./popup.js"></script>
     <style>
-        *{
-            padding: 0;
-            margin: 0;
-            font-family: 'Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, 微软雅黑, Arial, sans-serif';
-        }
-        li{
-            list-style: none;
-        }
-        .popup-main{
-            width: 160px;
-            height: 100%;
-            padding: 5px;
-            box-shadow: 0 1px 4px 0 rgba(0,0,0,.08);
-        }
-        .popup-main li {
-            display: block;
-            width: 100%;
-            height: 24px;
-            line-height: 24px;
-            font-size: 14px;
-            cursor: pointer;
-            background: #f8f8f8;
-            position: relative;
-            border-radius: 2px;
-        }
-        .popup-main li button{
-            display: block;
-            width: 100%;
-            height: 100%;
-            border: 0;
-            color:#333;
-            outline: none;
-            position: relative;
-            z-index: 1;
-            background:transparent;
-        }
-        .popup-main li::before{
-            transition: .3s all;
-            content:'';
-            position: absolute;
-            display: block;
-            left: 0;
-            top: 0;
-            width: 160px;
-            height: 100%;
-            background-color: rgba(211, 226, 235,0);
-            z-index: 0;
-            border-radius: 2px;
-        }
-        .popup-main li:hover::before{
-            width: 160px;
-            background-color: rgba(211, 226, 235, 5);
-
-        }
+      * {
+        padding: 0;
+        margin: 0;
+        font-family: "Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, 微软雅黑, Arial, sans-serif";
+      }
+      .popup-main {
+        width: 282px;
+        padding: 30px 20px 0;
+        color: #333;
+      }
+      input {
+        width: 150px;
+        height: 25px;
+        outline: none;
+        padding: 0 10px;
+        border: 1px solid #ddd;
+        background: transparent;
+      }
+      .popup-col {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        font-size: 12px;
+      }
+      .popup-col input {
+        margin-bottom: 0;
+      }
+      .popup-col span {
+        width: 100px;
+        text-align: right;
+        margin-right: 10px;
+        cursor: default;
+      }
+      .popup-btn {
+        transition: 0.3s all;
+        padding: 8px 18px;
+        margin: 0 auto;
+        cursor: pointer;
+        background: #f1f1f1;
+        border: 0;
+        border-radius: 4px;
+        outline: none;
+      }
+      .popup-btn:hover {
+        background-color: rgba(211, 226, 235, 5);
+      }
+      .popup-operate {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+      }
+      .popup-message {
+        font-size: 12px;
+        text-align: center;
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        color: rgb(59, 89, 107);
+      }
+      .popup-message.success {
+        color: #19be6b;
+      }
+      .popup-message.info {
+        color: #2db7f5;
+      }
+      .popup-message.error {
+        color: #ed4014;
+      }
+      .popup-message.warning {
+        color: #ff9900;
+      }
     </style>
-</head>
-<body>
-    <ul class="popup-main">
-        <li>
-            <button titile="一键设置广电云测试服cookie到本地">一键设置cookie</button>
-        </li>
-    </ul>
-</body>
+  </head>
+  <body class="popup-main">
+    <div class="popup-col">
+      <span>源网站:</span>
+      <input
+        class="from-url"
+        type="text"
+        value=""
+      />
+    </div>
+    <div class="popup-col">
+      <span>源网站cookie键名:</span>
+      <input class="from-key" type="text" value="" />
+    </div>
+    <div class="popup-col">
+      <span>目标网站:</span> <input class="to-url" type="text" value="" />
+    </div>
+    <div class="popup-operate">
+      <button class="popup-btn">一键设置cookie</button>
+    </div>
+    <div class="popup-message"></div>
+  </body>
 </html>
