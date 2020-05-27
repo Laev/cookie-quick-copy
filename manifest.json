@@ -1,28 +1,17 @@
 {
   "manifest_version": 2,
   "name": "cookie快捷设置",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "cookie快捷设置",
   "icons": {
-    "16": "images/icon_16x16.png", // 扩展程序页面上的图标
-    "32": "images/icon_32x32.png", // Windows计算机通常需要此大小。提供此选项可防止尺寸失真缩小48x48选项。
-    "48": "images/icon_48x48.png", // 显示在扩展程序管理页面上
-    "128": "images/icon_128x128.png" // 在安装和Chrome Webstore中显示
-  },
-  "background": {
-    // "page": "background/background.html",
-    "persistent": false,
-    "scripts": ["background.js"]
+    "16": "images/icon_16x16.png",
+    "32": "images/icon_32x32.png",
+    "48": "images/icon_48x48.png",
+    "128": "images/icon_128x128.png"
   },
   "browser_action": {
-    "default_icon": "images/icon_32x32.png", // 特定于工具栏的图标，至少建议使用16x16和32x32尺寸，应为方形
-    "default_popup": "popup.html" // 不允许内联JavaScript。
-    // "default_title": "悬浮在工具栏插件图标上时的tooltip内容",
+    "default_icon": "images/icon_32x32.png",
+    "default_popup": "popup.html"
   },
-  // "content_scripts": [ {
-  // 	"js": [ "inject.js" ],
-  // 	"matches": [ "http://*/*", "https://*/*" ],
-  // 	"run_at": "document_start"
-  //  } ],
-  "permissions": ["http://*/", "https://*/", "cookies"]
+  "permissions": ["http://*/", "https://*/", "cookies", "storage"]
 }
