@@ -37,34 +37,21 @@ document.addEventListener("DOMContentLoaded", function () {
       const { value, path, expirationDate } = cookie;
       if (!hasTargetPermission) {
         const isPassSet = await requestPermissions(fromUrl);
-        if (isPassSet) {
-          setCookie(toUrl, fromKey, value, {
-            domain: getHostFromUrl(toUrl),
-            path,
-            expirationDate,
-          })
-            .then(() => {
-              message.success("设置成功");
-            })
-            .catch(() => {
-              message.error("设置失败");
-            });
-        } else {
+        if (!isPassSet) {
           message.error("操作不被允许，请授予权限");
-        }
-        return;
-      } else {
-        setCookie(toUrl, fromKey, value, {
-          domain: getHostFromUrl(toUrl),
-          path,
-          expirationDate,
-        })
-          .then(() => {
-            message.success("设置成功");
-          })
-          .catch(() => {
-            message.error("设置失败");
-          });
+          return;
+        } 
       }
+      setCookie(toUrl, fromKey, value, {
+        domain: getHostFromUrl(toUrl),
+        path,
+        expirationDate,
+      })
+      .then(() => {
+        message.success("设置成功");
+      })
+      .catch(() => {
+        message.error("设置失败");
+      });
     });
 });
