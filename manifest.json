@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "cookie快捷设置",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "cookie快捷设置",
   "icons": {
     "16": "images/icon_16x16.png",
@@ -13,5 +13,6 @@
     "default_icon": "images/icon_32x32.png",
     "default_popup": "popup.html"
   },
+  "homepage_url": "https://github.com/Laev/cookie-quick-copy",
   "permissions": ["http://*/", "https://*/", "cookies", "storage"]
 }
