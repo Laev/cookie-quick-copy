@@ -12,15 +12,16 @@ document.addEventListener("DOMContentLoaded", function () {
       const fromKey = document.querySelector(".from-key").value;
       const toUrl = document.querySelector(".to-url").value;
       const urlReg = /^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/;
+      const specialUrls = ['http://localhost']
       if (!fromUrl || !fromKey || !toUrl) {
         message.warning("请填写完整配置");
         return;
       }
-      if (!urlReg.test(fromUrl)) {
+      if (!urlReg.test(fromUrl) && !fromUrl.includes(specialUrls)) {
         message.warning("源网站网址格式不正确");
         return;
       }
-      if (!urlReg.test(toUrl)) {
+      if (!urlReg.test(toUrl) && !toUrl.includes(specialUrls)) {
         message.warning("目标网站网址格式不正确");
         return;
       }
