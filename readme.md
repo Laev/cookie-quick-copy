@@ -1,43 +1,65 @@
 # cookie-quick-copy
 
-## 简述
+## 简述（Introduction）
 
-一款快速复制某网站指定键与键值至当前已激活标签页的谷歌插件
+一款快捷同步网站cookie至目标网站的谷歌插件，基于vue-cli4.x(vue3.0) + typescript + ant-design-vue 开发
 
-### 已支持的功能
+### 特性（Features）
 
-1. 支持开放配置源地址、源地址cookie键、目标地址
-2. 打开窗口后将会读取你上一次设置成功的结果
+1. 支持cookie全量复制至目标网站
+2. 支持自动同步功能
+3. 支持自动备份插件配置至个人账户
 
-### 目录结构
+### 未来（Future）
+
+1. 支持多份配置，并增加配置列表
+2. 支持exclude字段，排除不需要同步的字段
+3. 支持同步网站local storage
+
+### 目录结构（只展示核心部分）
 
 ```
-├── images                 // 图标文件
-│   ├── icon_128x128.png   // 扩展程序页面上的图标
-│   ├── icon_16x16.png     // Windows计算机通常需要此大小。提供此选项可防止尺寸失真缩小48x48选项。
-│   ├── icon_32x32.png     // 显示在扩展程序管理页面上
-│   └── icon_48x48.png     // 在安装和Chrome Webstore中显示
-├── manifest.json          // 清单文件
-├── popup.html             // 扩展程序的 UI 页面
-├── popup.js               // 扩展程序的 js 脚本
-└── utils                  // 存放工具类
-    └── common.js          // 公用函数
+├── cookie-quick-copy            // 最终生成的dist文件
+├── cookie-quick-copy_packages   // 生成zip/crx文件
+├── src
+│   ├── assets                   // 放置图标、图片、css等静态文件
+│   ├── components               // 公共组件文件夹
+│   ├── config                   // 放置chrome插件所需的配置文件或密钥等
+│   ├── lib                      // 公共方法库
+│   ├── modules                  // 谷歌插件的几个核心模块部分popup、background、content
+│   └── types                    // typescript 声明文件统一放置处
 ```
-## 调试
 
-1. 拉取
+### 项目运行及调试（Run）
 
-   ```shell
-   git clone https://github.com/Laev/cookie-quick-copy.git
-   ```
+```
+yarn install
+```
 
-2. 在打开谷歌浏览器右上角菜单>更多工具>扩展程序>加载已解压的扩展程序
+```
+yarn serve // 限于chrome api 该调试模式只能简单调试部分样式
+// 或
+yarn watch // 运行后将项目子文件夹cookie-quick-copy 导入至浏览器中即可调试
+```
 
-3. 如果你需要调试popup.js的内容，可以右键点击插件图标>审查弹出内容
+### 项目打包（Build）
+```
+yarn build // 打包已解压后的插件
+// 或
+yarn build:zip // 打包zip文件
+// 或
+yarn build:crx // 打包crx文件
+```
 
-## 相关文档
+### 图标说明（Icons）
 
-[chrome API](https://crxdoc-zh.appspot.com/extensions/api_index#stable_apis)
+本插件LOGO源于iconfont，版权所属[Crazy、晓鸢](https://www.iconfont.cn/user/detail?spm=a313x.7781069.0.d214f71f6&uid=56212)
+
+### 相关文档（Doc）
+
+[chrome API（官方）](https://developer.chrome.com/docs/extensions/reference/)
+
+[chrome API（第三方）](https://crxdoc-zh.appspot.com/extensions/api_index#stable_apis)
 
 [一篇文章教你顺利入门和开发chrome扩展程序](https://juejin.im/post/5c135a275188257284143418)
 
@@ -45,6 +67,6 @@
 
 [说说Chrome插件从开发调试到打包发布](https://juejin.im/post/5b55a98ce51d4519873f57af)
 
+### 版权（License）
 
-
-
+MIT
