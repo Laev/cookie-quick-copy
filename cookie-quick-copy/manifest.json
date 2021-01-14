@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+  "name": "cookie快捷设置（Cookie Quick Copy）",
+  "version": "1.0.0",
+  "description": "cookie快捷设置，基于vue3.x typescript ant-design-vue ",
+  "icons": {
+    "16": "assets/images/icon_16x16.png",
+    "32": "assets/images/icon_32x32.png",
+    "48": "assets/images/icon_48x48.png",
+    "128": "assets/images/icon_128x128.png"
+  },
+  "browser_action": {
+		"default_title": "cookie快捷设置（Cookie Quick Copy）",
+    "default_icon": "assets/images/icon_256x256.png",
+    "default_popup": "popup.html"
+  },
+  "background": { 
+  "scripts": ["js/chunk-vendors.js", "js/background.js"],
+    "persistent": false
+  },
+  "web_accessible_resources": ["js/inject.js"],
+  "homepage_url": "https://github.com/Laev/cookie-quick-copy",
+  "permissions": ["http://*/", "https://*/", "cookies", "storage"]
+}
