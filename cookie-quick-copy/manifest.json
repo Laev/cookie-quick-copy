@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "cookie快捷设置（Cookie Quick Copy）",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "cookie快捷设置，基于vue3.x typescript ant-design-vue ",
   "icons": {
     "16": "assets/images/icon_16x16.png",
