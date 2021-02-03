@@ -62,7 +62,7 @@
 import { ref, reactive } from 'vue'
 import { Form, Input, Button, Switch, Tooltip, message } from 'ant-design-vue'
 import { AimOutlined } from '@ant-design/icons-vue'
-import { getWebDomain } from '@/lib/common'
+import { getWebDomain, getFormatUrl } from '@/lib/common'
 import { PopupForm } from '@/types/popup'
 import { Tab, Cookie } from '@/types/chrome-api'
 import CONFIG from '@/lib/config'
@@ -107,7 +107,8 @@ export default {
         callback(new Error('请输入源网站网址'))
         return
       }
-      if (!/^(((ht|f)tps?):\/\/)[\w-]+(\.[\w-]+)+\/\S*$/.test(value)) {
+      // if (!/^(((ht|f)tps?):\/\/)[\w-]+(\.[\w-]+)+\/\S*$/.test(value)) {
+      if (!/^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/.test(value)) {
         callback(new Error('网址格式不正确'))
         return
       }
@@ -143,11 +144,11 @@ export default {
       // 设置toUrl初始值
       getCurrentTab((tabs: Tab) => {
         if (type === 'to') {
-          popupForm.toUrl = tabs[0].url || ''
+          popupForm.toUrl = tabs?.[0]?.url || ''
           return
         }
         if (type === 'from') {
-          popupForm.fromUrl = tabs[0].url || ''
+          popupForm.fromUrl = tabs?.[0]?.url || ''
           return
         }
       })
@@ -173,7 +174,8 @@ export default {
     // 视图层复制cookie核心函数
     const copyCookieMain = () => {
       message.destroy()
-      const { fromUrl, toUrl, sync } = popupForm
+      const fromUrl = getFormatUrl(popupForm.fromUrl)
+      const toUrl = getFormatUrl(popupForm.toUrl)
       let cookie: Cookie = null
       // 验证来源地址权限
       retryPermissions(fromUrl)
@@ -203,9 +205,9 @@ export default {
                   // 保存配置到用户storage中
                   setStorage(
                     {
-                      fromUrl,
-                      toUrl,
-                      sync
+                      fromUrl: popupForm.fromUrl,
+                      toUrl: popupForm.toUrl,
+                      sync: popupForm.sync
                     },
                     () => {
                       setTimeout(() => {
@@ -262,6 +264,7 @@ export default {
         })
       }
     }
+
     return {
       popupForm,
       popupFormRef,

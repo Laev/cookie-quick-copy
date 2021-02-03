@@ -11,3 +11,15 @@ export function getWebDomain(url: string) {
   }
   return new URL(url).hostname
 }
+
+/**
+ * 格式化网址为最简单的符合权限的格式
+ * @param  {string}  url [网站地址]
+ */
+export function getFormatUrl(url: string) {
+  if (!url.includes('http:') || !url.includes('https:')) {
+    url = 'http://' + url
+  }
+  const formatUrl = new URL(url)
+  return `${formatUrl.protocol}//${formatUrl.host}/`
+}
