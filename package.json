@@ -1,6 +1,6 @@
 {
   "name": "cookie-quick-copy",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": true,
   "scripts": {
     "watch": "vue-cli-service build --watch --mode production",
