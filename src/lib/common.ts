@@ -17,7 +17,7 @@ export function getWebDomain(url: string) {
  * @param  {string}  url [网站地址]
  */
 export function getFormatUrl(url: string) {
-  if (!url.includes('http:') || !url.includes('https:')) {
+  if (!url.includes('http:') && !url.includes('https:')) {
     url = 'http://' + url
   }
   const formatUrl = new URL(url)
