@@ -1,72 +1,123 @@
-# cookie-quick-copy
+# Cookie Quick Copy
 
-## 简述（Introduction）
+<p align="center">
+  <img src="src/assets/icon/logo.svg" width="128" height="128" alt="logo">
+</p>
 
-一款快捷同步网站cookie至目标网站的谷歌插件，基于vue-cli4.x(vue3.0) + typescript + ant-design-vue 开发
+<p align="center">
+  <a href="./LICENSE">
+    <img src="https://img.shields.io/badge/license-AGPL--3.0-blue.svg" alt="License">
+  </a>
+  <a href="https://v3.vuejs.org/">
+    <img src="https://img.shields.io/badge/vue-3.0-brightgreen.svg" alt="Vue">
+  </a>
+  <a href="https://www.typescriptlang.org/">
+    <img src="https://img.shields.io/badge/typescript-%5E4.0.0-blue.svg" alt="Typescript">
+  </a>
+</p>
+## 📝 简介 | Introduction
 
-### 特性（Features）
+一款快捷同步网站cookie至目标网站的谷歌插件，基于Vue 3.0 + TypeScript + Ant Design Vue开发。
 
-1. 支持cookie全量复制至目标网站
-2. 支持自动同步功能
-3. 支持自动备份插件配置至个人账户
+A Chrome extension for quickly syncing website cookies to target sites, developed with Vue 3.0 + TypeScript + Ant Design Vue.
 
-### 未来（Future）
+## ✨ 特性 | Features
 
-1. 支持多份配置，并增加配置列表
-2. 支持exclude字段，排除不需要同步的字段
-3. 支持同步网站local storage
+- ✅ 支持cookie全量复制至目标网站 | Support full cookie synchronization to target websites
+- ✅ 支持自动同步功能 | Support automatic synchronization
+- ✅ 支持中英双语（自动跟随浏览器语言）| Bilingual support (Auto-detect browser language)
+- ✅ 简洁直观的操作界面 | Clean and intuitive interface
 
-### 目录结构（只展示核心部分）
+## 🚀 安装 | Installation
+
+### 从Chrome商店安装 | Install from Chrome Web Store
+
+1. 访问Chrome网上应用店 | Visit Chrome Web Store
+2. 搜索"Cookie Quick Copy" | Search for "Cookie Quick Copy"
+3. 点击"添加至Chrome" | Click "Add to Chrome"
+
+### 手动安装 | Manual Installation
+
+1. 下载最新版本的zip文件 | Download the latest zip file
+2. 解压下载的文件 | Extract the downloaded file
+3. 打开Chrome扩展页面 (chrome://extensions/) | Open Chrome extensions page
+4. 启用开发者模式 | Enable Developer Mode
+5. 点击"加载已解压的扩展程序"并选择解压目录 | Click "Load unpacked" and select the extracted folder
+
+## 🔨 开发 | Development
+
+### 目录结构 | Project Structure
 
 ```
-├── cookie-quick-copy            // 最终生成的dist文件
-├── cookie-quick-copy_packages   // 生成zip/crx文件
+├── dist
+│   ├── cookie-quick-copy        // 已解压的插件 | Unpacked extension
+│   ├── cookie-quick-copy.crx    // 打包后的crx文件 | Packed crx file
+│   ├── cookie-quick-copy.zip    // 打包后的zip文件 | Packed zip file
 ├── src
-│   ├── assets                   // 放置图标、图片、css等静态文件
-│   ├── components               // 公共组件文件夹
-│   ├── config                   // 放置chrome插件所需的配置文件或密钥等
-│   ├── lib                      // 公共方法库
-│   ├── modules                  // 谷歌插件的几个核心模块部分popup、background、content
-│   └── types                    // typescript 声明文件统一放置处
+│   ├── assets                   // 静态资源 | Static assets
+│   ├── extension                // 插件配置文件 | Extension configs
+│   ├── hooks                    // 公共方法库 | Common hooks
+│   ├── locales                  // 国际化文件 | I18n files
+│   ├── modules                  // 核心模块 | Core modules
+│   │   ├── popup                // 弹出窗口 | Popup window
+│   │   └── background           // 后台脚本 | Background scripts
+│   ├── types                    // 类型声明文件 | Type declarations
+│   ├── utils                    // 工具函数 | Utility functions
+│   └── config.ts                // 配置文件 | Configuration file
 ```
 
-### 项目运行及调试（Run）
+### 环境要求 | Prerequisites
 
-```
+- Node.js >= 14
+- Yarn >= 1.22
+
+### 安装依赖 | Install Dependencies
+
+```bash
 yarn install
 ```
 
-```
-yarn serve // 限于chrome api 该调试模式只能简单调试部分样式
-// 或
-yarn watch // 运行后将项目子文件夹cookie-quick-copy 导入至浏览器中即可调试
-```
+### 开发调试 | Development
 
-### 项目打包（Build）
-```
-yarn build // 打包已解压后的插件
-// 或
-yarn build:zip // 打包zip文件
-// 或
-yarn build:crx // 打包crx文件
+```bash
+# 样式调试模式 | Style debug mode
+yarn serve
+
+# 插件调试模式 | Extension debug mode
+yarn watch
 ```
 
-### 图标说明（Icons）
+### 构建 | Build
 
-本插件LOGO源于iconfont，版权所属[Crazy、晓鸢](https://www.iconfont.cn/user/detail?spm=a313x.7781069.0.d214f71f6&uid=56212)
+```bash
+# 构建解压版本 | Build unpacked extension
+yarn build
 
-### 相关文档（Doc）
+# 构建zip包 | Build zip file
+yarn build:zip
 
-[chrome API（官方）](https://developer.chrome.com/docs/extensions/reference/)
+# 构建crx文件 | Build crx file
+yarn build:crx
 
-[chrome API（第三方）](https://crxdoc-zh.appspot.com/extensions/api_index#stable_apis)
+# 构建所有文件 | Build all files
+yarn build:all
+```
 
-[一篇文章教你顺利入门和开发chrome扩展程序](https://juejin.im/post/5c135a275188257284143418)
+## 📖 使用文档 | Documentation
 
-[手把手教你开发一个 chrome 扩展程序](https://juejin.im/post/5e58c06d51882549331cf0ed)
+- [Chrome扩展开发文档 | Chrome Extension Documentation](https://developer.chrome.com/docs/extensions/reference/)
 
-[说说Chrome插件从开发调试到打包发布](https://juejin.im/post/5b55a98ce51d4519873f57af)
+## 🤝 贡献 | Contributing
 
-### 版权（License）
+欢迎提交问题和改进建议！| Issues and suggestions are welcome!
 
-MIT
+## 📄 开源协议 | License
+
+本项目基于 [AGPL-3.0](./LICENSE) 协议开源。
+
+This project is open-sourced under the [AGPL-3.0](./LICENSE) license.
+
+## 🙏 致谢 | Acknowledgements
+
+- 图标设计: [Crazy、晓鸢](https://www.iconfont.cn/user/detail?uid=56212)
+- Icon Design: [Crazy, XiaoYuan](https://www.iconfont.cn/user/detail?uid=56212)

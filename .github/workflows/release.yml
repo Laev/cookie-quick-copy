@@ -38,7 +38,8 @@ jobs:
       # 解密pem文件
       - name: Setup PEM
         run: |
-          echo "${{ secrets.EXTENSION_PEM }}" > src/extension/cookie-quick-copy.pem
+          echo "${{ secrets.EXTENSION_PEM }}" | base64 -d > src/extension/cookie-quick-copy.pem
+          chmod 600 src/extension/cookie-quick-copy.pem
         env:
           EXTENSION_PEM: ${{ secrets.EXTENSION_PEM }}
       
