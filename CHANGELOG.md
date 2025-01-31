@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/Laev/cookie-quick-copy/compare/v2.1.0...v2.2.0) (2025-01-31)
+
+
+### Features
+
+* **workflows & doc:** update workflows and readme ([7712eea](https://github.com/Laev/cookie-quick-copy/commit/7712eeaa813def968c29879073f03c02f61bb0e5))
+
 ## 2.1.0 (2025-01-31)
 
 
