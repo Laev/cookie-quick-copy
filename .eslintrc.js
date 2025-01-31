@@ -1,22 +1,15 @@
 module.exports = {
   root: true,
   env: {
-    node: true
+    node: true,
   },
-  extends: [
-    'plugin:vue/vue3-essential',
-    'eslint:recommended',
-    '@vue/typescript/recommended',
-    '@vue/prettier',
-    '@vue/prettier/@typescript-eslint'
-  ],
+  extends: ["plugin:vue/vue3-essential", "@vue/typescript/recommended"],
   globals: { chrome: true },
   parserOptions: {
-    ecmaVersion: 2020
+    ecmaVersion: 2020,
   },
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'vue/no-parsing-error': [2, { 'x-invalid-end-tag': false }]
-  }
-}
+    "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
+    "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
+  },
+};

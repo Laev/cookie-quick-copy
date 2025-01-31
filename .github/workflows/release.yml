@@ -1,0 +1,72 @@
+name: Build and Release Extension
+
+on:
+  push:
+    tags:
+      - 'v*' # 匹配所有以v开头的标签，如v1.0.0
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # 检出代码
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
+      # 设置Node.js环境
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'yarn'
+      
+      # 使用缓存加速构建
+      - name: Cache build
+        uses: actions/cache@v3
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+      
+      # 安装依赖
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+        
+      # 解密pem文件
+      - name: Setup PEM
+        run: |
+          echo "${{ secrets.EXTENSION_PEM }}" > src/extension/cookie-quick-copy.pem
+        env:
+          EXTENSION_PEM: ${{ secrets.EXTENSION_PEM }}
+      
+      # 使用优化后的构建命令
+      - name: Build and package
+        run: yarn build:all
+      
+      # 添加构建结果检查
+      - name: Check build artifacts
+        run: |
+          if [ ! -f "dist/cookie-quick-copy.crx" ]; then
+            echo "CRX file not found"
+            exit 1
+          fi
+          if [ ! -f "dist/cookie-quick-copy.zip" ]; then
+            echo "ZIP file not found"
+            exit 1
+          fi
+      
+      # 创建Release
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body_path: CHANGELOG.md
+          files: |
+            dist/cookie-quick-copy.zip
+            dist/cookie-quick-copy.crx
